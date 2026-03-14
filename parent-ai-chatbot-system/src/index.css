@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1e3a8a; /* Deep Blue */
+  --color-secondary: #f3f4f6; /* Light Gray */
+  --color-accent: #d4af37; /* Soft Gold */
+  --color-accent-dark: #b5952f;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased selection:bg-primary selection:text-white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg shadow-slate-200/50 rounded-2xl;
+  }
+  
+  .glass-panel {
+    @apply bg-primary/95 backdrop-blur-xl border-r border-white/10 text-white shadow-2xl;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg font-medium active:scale-[0.98];
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-dark transition-all duration-300 rounded-lg shadow-md hover:shadow-lg font-medium active:scale-[0.98];
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary/20 text-primary hover:bg-primary/5 transition-all duration-300 rounded-lg font-medium active:scale-[0.98];
+  }
+
+  .input-field {
+    @apply w-full bg-white/50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 placeholder:text-slate-400;
+  }
+
+  .nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 text-slate-300 hover:text-white cursor-pointer;
+  }
+
+  .nav-item.active {
+    @apply bg-white/20 text-white font-medium shadow-inner;
+  }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

@@ -1,0 +1,139 @@
+/* Vignan University Theme Colors */
+:root {
+  --primary-dark-blue: #0E1B4D;
+  --secondary-white: #FFFFFF;
+  --background-light-gray: #F4F6F9;
+  --accent-gold: #D4AF37;
+  --accent-sky-blue: #5EB2F1;
+  
+  --text-main: #2C3E50;
+  --text-muted: #7F8C8D;
+  
+  --success-green: #2ECC71;
+  --warning-orange: #F39C12;
+  --danger-red: #E74C3C;
+  
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--background-light-gray);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  color: var(--primary-dark-blue);
+}
+
+p, span, a, input, button {
+  font-family: var(--font-secondary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-dark-blue), var(--accent-sky-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-dark-blue), #1a2f7c);
+  color: var(--secondary-white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, #1a2f7c, var(--primary-dark-blue));
+}
+
+.btn-accent {
+  background: var(--accent-gold);
+  color: var(--primary-dark-blue);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  filter: brightness(1.1);
+}
+
+/* Page Layout Wrappers */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
