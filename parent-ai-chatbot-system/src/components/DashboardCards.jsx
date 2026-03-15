@@ -1,12 +1,12 @@
 import React from 'react';
 import { GlassCard } from '../components/ui/GlassCard';
-import { ArrowUpRight, TrendingUp, CalendarClock, GraduationCap, AlertCircle, FileText } from 'lucide-react';
+import { ArrowUpRight, TrendingUp, CalendarClock, AlertCircle } from 'lucide-react';
 
 const DashboardCards = ({ data }) => {
   const cards = [
     {
       title: "Current CGPA",
-      value: data.performance.currentCgpa,
+      value: data.performance.cgpa,
       subtitle: "Out of 10.0",
       icon: <TrendingUp className="w-6 h-6 text-accent" />,
       color: "bg-primary/5",
@@ -24,26 +24,17 @@ const DashboardCards = ({ data }) => {
     },
     {
       title: "Active Backlogs",
-      value: data.academicStatus.backlogs.active,
-      subtitle: "Cleared: 2",
+      value: data.performance.backlogs,
+      subtitle: "",
       icon: <AlertCircle className="w-6 h-6 text-red-500" />,
       color: "bg-red-50",
       trend: "Action required",
       trendPositive: false
-    },
-    {
-      title: "Course Completion",
-      value: `${data.academicStatus.courseCompletion}%`,
-      subtitle: `${data.profile.semester} Ongoing`,
-      icon: <GraduationCap className="w-6 h-6 text-indigo-600" />,
-      color: "bg-indigo-50",
-      trend: "On track",
-      trendPositive: true
     }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
       {cards.map((card, index) => (
         <GlassCard key={index} className={`border-l-4 ${card.trendPositive ? 'border-l-accent' : 'border-l-red-500'}`}>
           <div className="flex justify-between items-start mb-4">

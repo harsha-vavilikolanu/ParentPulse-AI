@@ -17,9 +17,13 @@ const AdminPanel = () => {
       {/* Admin Header */}
       <header style={{ background: 'var(--primary-dark-blue)', color: 'white', padding: '20px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ background: 'var(--accent-gold)', color: 'var(--primary-dark-blue)', padding: '8px', borderRadius: '8px', fontWeight: 'bold' }}>VU Admin</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--accent-gold)', color: 'var(--primary-dark-blue)', padding: '8px', borderRadius: '8px', fontWeight: 'bold' }}>
+              <img src="/src/assets/vignanlogo.png" alt="VU Admin" style={{ width: '24px', height: '24px', borderRadius: '4px', objectFit: 'cover' }} />
+              Admin
+            </div>
           <h1 style={{ fontSize: '1.2rem', margin: 0 }}>Vignan Portal Administration</h1>
         </div>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <span style={{ fontSize: '0.9rem' }}>Admin User</span>
           <div style={{ width: '40px', height: '40px', background: 'white', color: 'var(--primary-dark-blue)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>A</div>

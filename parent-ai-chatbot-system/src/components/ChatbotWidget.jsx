@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Mic, User, Bot } from 'lucide-react';
+import { MessageSquare, X, Send, Mic, Bot } from 'lucide-react';
 import { chatbotService } from '../services/chatbotService';
 import { useVoiceAssistant } from './VoiceAssistant';
 
@@ -101,7 +101,7 @@ const ChatbotWidget = ({ regNo }) => {
           {messages.map(msg => (
             <div key={msg.id} className={`message ${msg.isBot ? 'message-bot' : 'message-user'}`}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexDirection: msg.isBot ? 'row' : 'row-reverse' }}>
-                {msg.isBot ? <Bot size={16} style={{ marginTop: '2px', opacity: 0.7 }} /> : <User size={16} style={{ marginTop: '2px', opacity: 0.7 }} />}
+                {msg.isBot ? <Bot size={16} style={{ marginTop: '2px', opacity: 0.7 }} /> : null}
                 <div style={{ flex: 1 }}>{msg.text}</div>
               </div>
               <span className="message-time">{msg.time}</span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, BarChart3, BotMessageSquare, CalendarClock } from 'lucide-react';
+import { ArrowRight, ShieldCheck, BarChart3, Bot, CalendarClock } from 'lucide-react';
 import Footer from '../components/layout/Footer';
 import { HeroCanvas } from '../components/ui/HeroCanvas';
 
@@ -15,7 +15,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg">
-              VU
+              <img src="/src/assets/vignanlogo.png" alt="Vignan Logo" className="w-10 h-10 rounded-full object-cover" />
             </div>
             <span className="font-bold text-2xl text-primary tracking-tight">Vignan University</span>
           </div>
@@ -27,6 +27,7 @@ const Home = () => {
           </button>
         </div>
       </header>
+
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 flex-1 flex items-center justify-center min-h-[90vh]">
@@ -77,7 +78,7 @@ const Home = () => {
             {[
               { icon: <BarChart3 className="w-8 h-8 text-primary" />, title: "Performance", desc: "Track grades, CGPA, and subject-wise performance in real-time." },
               { icon: <CalendarClock className="w-8 h-8 text-primary" />, title: "Attendance", desc: "Monitor daily attendance and receive automated alerts for shortfalls." },
-              { icon: <BotMessageSquare className="w-8 h-8 text-primary" />, title: "AI Chatbot", desc: "Ask questions and get instant answers about your child's data." },
+              { icon: <Bot className="w-8 h-8 text-primary" />, title: "AI Chatbot", desc: "Ask questions and get instant answers about your child's data." },
               { icon: <ShieldCheck className="w-8 h-8 text-primary" />, title: "Secure Access", desc: "Bank-grade security with OTP verification and encrypted sessions." }
             ].map((feature, idx) => (
               <motion.div 

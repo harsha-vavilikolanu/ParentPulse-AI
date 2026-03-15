@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Shield, Fingerprint, Activity, Smartphone, User, Loader2 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { GlassCard } from '../components/ui/GlassCard';
+import { parentCredentials } from '../data/mockStudentData';
 
 const Login = () => {
   const [regNo, setRegNo] = useState('');
@@ -25,8 +26,10 @@ const Login = () => {
       return;
     }
 
-    // Mock validation logic
-    if (regNo.length < 8 || phone.length < 10) {
+    const isValidRegNo = parentCredentials.validRegNumbers.includes(regNo.toUpperCase());
+    const isValidPhone = parentCredentials.validPhoneNumbers.includes(phone);
+
+    if (!isValidRegNo || !isValidPhone) {
       setError('Invalid Registration Number or Phone Number.');
       return;
     }
@@ -50,11 +53,14 @@ const Login = () => {
 
     setLoading(true);
     
-    // Simulate verification API call
-    setTimeout(() => {
-      login(regNo, phone);
+    const loggedIn = login(regNo, phone);
+
+    if (loggedIn) {
       navigate('/dashboard');
-    }, 1000);
+    } else {
+      setLoading(false);
+      setError('Login failed. Please check your credentials.');
+    }
   };
 
   return (
@@ -70,10 +76,11 @@ const Login = () => {
 
         <div className="relative z-10 flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary font-bold text-xl shadow-lg">
-            VU
+            <img src="/src/assets/vignanlogo.png" alt="Vignan Logo" className="w-12 h-12 rounded-full object-cover shadow-lg" />
           </div>
           <span className="font-bold text-2xl text-white">Vignan University</span>
         </div>
+
 
         <div className="relative z-10 my-auto text-white max-w-lg">
           <motion.div
@@ -115,12 +122,13 @@ const Login = () => {
       <div className="flex-1 flex items-center justify-center p-6 md:p-12 relative">
         <div className="absolute top-6 right-6 md:hidden">
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-lg">
-            VU
+            <img src="/src/assets/vignanlogo.png" alt="Vignan Logo" className="w-10 h-10 rounded-full object-cover" />
           </div>
         </div>
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
+
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="w-full max-w-md"

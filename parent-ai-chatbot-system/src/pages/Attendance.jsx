@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { GlassCard } from '../components/ui/GlassCard';
 import { useStore } from '../store/useStore';
-import { mockStudentData } from '../data/mockData';
 import { CalendarClock, AlertTriangle } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const Attendance = () => {
-  const [data, setData] = useState(null);
+  const { studentData } = useStore();
 
-  useEffect(() => {
-    // Simulate loading data
-    setTimeout(() => {
-      setData(mockStudentData.attendance);
-    }, 400);
-  }, []);
+  if (!studentData) return <div className="p-8 text-center text-slate-500">Loading attendance data...</div>;
 
-  if (!data) return <div className="p-8 text-center text-slate-500">Loading attendance data...</div>;
+  const data = studentData.attendance;
+  const historyData = data.history.map((d, i) => ({ semester: `Sem ${i + 1}`, percentage: d }));
 
   return (
     <motion.div
@@ -61,7 +56,7 @@ const Attendance = () => {
           </h3>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data.history} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <BarChart data={historyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="semester" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} domain={[0, 100]} />
@@ -70,7 +65,7 @@ const Attendance = () => {
                   contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} 
                 />
                 <Bar dataKey="percentage" radius={[4, 4, 0, 0]} maxBarSize={40}>
-                  {data.history.map((entry, index) => (
+                  {historyData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.percentage >= 75 ? '#1e3a8a' : '#ef4444'} />
                   ))}
                 </Bar>
@@ -82,7 +77,7 @@ const Attendance = () => {
 
       <h3 className="text-xl font-bold text-slate-900 mb-4">Subject-wise Details</h3>
       
-      {data.subjects.some(sub => sub.warning) && (
+      {data.subjects.some(sub => sub.percentage < 75) && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 flex items-start gap-4 shadow-sm">
           <AlertTriangle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
           <div>
@@ -99,13 +94,10 @@ const Attendance = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-1">
                   <h4 className="font-bold text-slate-800 text-lg">{sub.name}</h4>
-                  <span className="bg-slate-100 text-slate-600 text-xs font-semibold px-2 py-1 rounded">
-                    {sub.code}
-                  </span>
-                  {sub.warning && <span className="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded-full flex items-center gap-1"><AlertTriangle className="w-3 h-3"/> Low</span>}
+                  {sub.percentage < 75 && <span className="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded-full flex items-center gap-1"><AlertTriangle className="w-3 h-3"/> Low</span>}
                 </div>
                 <p className="text-slate-500 text-sm">
-                  Classes Attended: <strong className="text-slate-700">{sub.classesAttended}</strong> / {sub.totalClasses}
+                  Status: <strong className="text-slate-700">{sub.status}</strong>
                 </p>
               </div>
               

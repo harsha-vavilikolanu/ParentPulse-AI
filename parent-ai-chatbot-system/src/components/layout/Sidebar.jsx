@@ -9,13 +9,13 @@ import {
   BellRing, 
   Users, 
   Lightbulb,
-  BotMessageSquare
+  Bot
 } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 import clsx from 'clsx';
 
 const Sidebar = () => {
-  const { closeSidebar } = useStore();
+  const { closeSidebar, studentData } = useStore();
 
   const navItems = [
     { name: 'Overview', path: '/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
@@ -26,15 +26,18 @@ const Sidebar = () => {
     { name: 'Notifications', path: '/notifications', icon: <BellRing className="w-5 h-5" /> },
     { name: 'Faculty Contacts', path: '/contacts', icon: <Users className="w-5 h-5" /> },
     { name: 'Insights', path: '/insights', icon: <Lightbulb className="w-5 h-5" /> },
-    { name: 'AI Assistant', path: '/chatbot', icon: <BotMessageSquare className="w-5 h-5 text-accent" /> },
+    { name: 'AI Assistant', path: '/chatbot', icon: <Bot className="w-5 h-5 text-accent" /> },
   ];
 
   return (
     <div className="flex flex-col h-full bg-primary/95 text-white p-4">
-      <div className="mb-8 px-2 hidden md:block">
-        <h2 className="text-xl font-bold text-white tracking-wide">Menu</h2>
-        <div className="h-1 w-10 bg-accent mt-2 rounded"></div>
-      </div>
+      {studentData && (
+        <div className="mb-8 px-2">
+          <h2 className="text-xl font-bold text-white tracking-wide">{studentData.name}</h2>
+          <p className="text-sm text-slate-300">{studentData.regNo}</p>
+          <div className="h-1 w-10 bg-accent mt-2 rounded"></div>
+        </div>
+      )}
       
       <nav className="flex-1 space-y-2 overflow-y-auto pr-2 pb-20">
         {navItems.map((item) => (

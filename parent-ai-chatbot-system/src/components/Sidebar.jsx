@@ -27,10 +27,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <div className="sidebar-header">
         {/* Placeholder for Vignan Logo in Sidebar */}
         <div style={{ width: '40px', height: '40px', background: 'var(--accent-gold)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'var(--primary-dark-blue)' }}>
-          VU
+          <img src="/src/assets/vignanlogo.png" alt="Vignan Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }} />
         </div>
         <span className="sidebar-title">Parent Portal</span>
       </div>
+
 
       <nav className="sidebar-nav">
         {navItems.map((item) => (
