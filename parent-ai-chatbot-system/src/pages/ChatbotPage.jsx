@@ -117,7 +117,7 @@ Use simple language.
 try {
 
 const response = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAo4_WwhvbfPGv2_IYw_VqBOEOUFjaT-gU`,
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCc-u_4Q9y7EiMcUvWXKBvsgkzl3G2M5wg`,
 {
 method: "POST",
 headers: {
